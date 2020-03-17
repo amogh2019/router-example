@@ -7,7 +7,7 @@ class SnakeCard extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            val: 0
+            val: 'Press up / down / left / right to move'
         };
     }
     //const { theme, label } = props;
@@ -27,19 +27,19 @@ class SnakeCard extends React.Component {
         console.log(event)
         switch (event.key) {
             case 'ArrowUp':
-                this.setVal(1);
+                this.setVal('up');
                 break;
             case 'ArrowDown':
-                this.setVal(2);
+                this.setVal('down');
                 break;
             case 'ArrowLeft':
-                this.setVal(3);
+                this.setVal('left');
                 break;
             case 'ArrowRight':
-                this.setVal(4);
+                this.setVal('right');
                 break;
             default:
-                this.setVal(0);
+                this.setVal('Press up / down / left / right to move');
                 break;
         }
     }
@@ -51,7 +51,7 @@ class SnakeCard extends React.Component {
             <Row className="justify-content-md-center">
                 <Col md="auto">
                     <p>
-                        This is just another snake game, move up down left right to move snake!
+                        This is just another snake game, move snake, eat to grow, dont eat yourself!
                 </p>
                 </Col>
             </Row>
