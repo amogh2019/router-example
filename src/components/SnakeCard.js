@@ -22,28 +22,13 @@ class SnakeCard extends React.Component {
 
     componentDidMount() {
         document.addEventListener('keydown', this.handleKeyPress);
-        setInterval(() => this.relocate(), 1000);
+        setInterval(() => this.relocate(), 300);
     }
 
     relocate = () => {
         console.log("here");
         this.state.positions.forEach((pos, id) => {
-            switch (this.state.directions[id]) {
-                case 1:
-                    this.updateHead(1, null, true);
-                    break;
-                case 2:
-                    this.updateHead(null, 1, true);
-                    break;
-                case 3:
-                    this.updateHead(1, null, false);
-                    break;
-                case 4:
-                    this.updateHead(null, 1, false);
-                    break;
-                default:
-                    break;
-            }
+            this.updateHead(this.state.directions[id]);
         });
     }
 
@@ -53,34 +38,41 @@ class SnakeCard extends React.Component {
         });
     }
 
-    updateHead = (x, y, sign) => {
+    updateHead = (dir) => {
         const oldpos = [...this.state.positions];
         const step = this.state.squareSize;
         const limit = this.state.windowSize;
 
-        if (x == null && y == null) {
-            return;
-        }
-        if (x == null) {
-
-            if (sign) {
-                oldpos[0][1] = mod(oldpos[0][1] + step, limit);
-            }
-            else
-                oldpos[0][1] = mod(oldpos[0][1] - step, limit);
-        }
-        if (y == null) {
-
-            if (sign) {
+        switch (dir) {
+            case 1:
                 oldpos[0][0] = mod(oldpos[0][0] + step, limit);
-            }
-            else
+                break;
+            case 2:
+                oldpos[0][1] = mod(oldpos[0][1] + step, limit);
+                break;
+            case 3:
                 oldpos[0][0] = mod(oldpos[0][0] - step, limit);
+                break;
+            case 4:
+                oldpos[0][1] = mod(oldpos[0][1] - step, limit);
+                break;
+            default:
+                break;
         }
 
         this.setState({
             ...this.state,
             positions: [...oldpos]
+        });
+    }
+
+    updateHeadDirection = (dir) => {
+        const oldDir = [...this.state.directions];
+
+        oldDir[0] = dir;
+        this.setState({
+            ...this.state,
+            directions: [...oldDir]
         });
     }
 
@@ -90,19 +82,19 @@ class SnakeCard extends React.Component {
         switch (event.key) {
             case 'ArrowUp':
                 this.setVal('up');
-                this.updateHead(null, 1, false);
+                this.updateHeadDirection(4);
                 break;
             case 'ArrowDown':
                 this.setVal('down');
-                this.updateHead(null, 1, true);
+                this.updateHeadDirection(2);
                 break;
             case 'ArrowLeft':
                 this.setVal('left');
-                this.updateHead(1, null, false);
+                this.updateHeadDirection(3);
                 break;
             case 'ArrowRight':
                 this.setVal('right');
-                this.updateHead(1, null, true);
+                this.updateHeadDirection(1);
                 break;
             default:
                 this.setVal('Press up / down / left / right to move');
