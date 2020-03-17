@@ -1,6 +1,6 @@
 
-import React from 'react'
-import { Container, Row, Col } from 'react-bootstrap'
+import React from 'react';
+import { Container, Row, Col } from 'react-bootstrap';
 import SnakeGrid from './SnakeGrid';
 import { mod } from '../utils/helper';
 
@@ -9,54 +9,78 @@ class SnakeCard extends React.Component {
 
     constructor(props) {
         super(props);
-        const { windowSize = 400 }  = props;
+        const { windowSize = 400 } = props;
         this.state = {
-            val: 'Press up / down / left / right to move' ,
-            windowSize : windowSize,
-            squareSize : 10,
-            positions : [[100, 200]]
+            val: 'Press up / down / left / right to move',
+            windowSize: windowSize,
+            squareSize: 10,
+            positions: [[100, 200]],
+            directions: [1]
         };
     }
     //const { theme, label } = props;
 
     componentDidMount() {
         document.addEventListener('keydown', this.handleKeyPress);
+        setInterval(() => this.relocate(), 1000);
     }
-    
+
+    relocate = () => {
+        console.log("here");
+        this.state.positions.forEach((pos, id) => {
+            switch (this.state.directions[id]) {
+                case 1:
+                    this.updateHead(1, null, true);
+                    break;
+                case 2:
+                    this.updateHead(null, 1, true);
+                    break;
+                case 3:
+                    this.updateHead(1, null, false);
+                    break;
+                case 4:
+                    this.updateHead(null, 1, false);
+                    break;
+                default:
+                    break;
+            }
+        });
+    }
+
     setVal = (k) => {
         this.setState({
-          val : k
+            val: k
         });
     }
 
     updateHead = (x, y, sign) => {
-        const oldpos = [ ...this.state.positions ];
+        const oldpos = [...this.state.positions];
         const step = this.state.squareSize;
         const limit = this.state.windowSize;
 
-        if(x == null && y == null){
+        if (x == null && y == null) {
             return;
         }
-        if(x == null){
-            
-            if(sign) {
-                oldpos[0][1] = mod( oldpos[0][1] + step , limit);
+        if (x == null) {
+
+            if (sign) {
+                oldpos[0][1] = mod(oldpos[0][1] + step, limit);
             }
             else
-                oldpos[0][1] = mod( oldpos[0][1] - step , limit);
+                oldpos[0][1] = mod(oldpos[0][1] - step, limit);
         }
-        if(y == null){
-            
-            if(sign) {
-                oldpos[0][0] = mod( oldpos[0][0] + step , limit);
+        if (y == null) {
+
+            if (sign) {
+                oldpos[0][0] = mod(oldpos[0][0] + step, limit);
             }
             else
-                oldpos[0][0] = mod( oldpos[0][0] - step , limit);
+                oldpos[0][0] = mod(oldpos[0][0] - step, limit);
         }
-        
+
         this.setState({
             ...this.state,
-            positions : [...oldpos]
+            positions: [...oldpos]
         });
     }
 
@@ -86,7 +110,7 @@ class SnakeCard extends React.Component {
         }
     }
 
-    
+
 
     render() {
         return (<Container className="mt-5">
@@ -122,4 +146,4 @@ class SnakeCard extends React.Component {
 }
 
 
-export default SnakeCard
+export default SnakeCard;

@@ -28,6 +28,7 @@ const SnakeGrid = (props) => {
                 return <div
                     style={elementStyle(elem[0], elem[1])}
                     className="bg-warning"
+                    key={id}
                 />
             })
         }
