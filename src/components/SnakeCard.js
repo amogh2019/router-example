@@ -1,13 +1,17 @@
 
 import React from 'react'
 import { Container, Row, Col } from 'react-bootstrap'
+import SnakeGrid from './SnakeGrid';
 
 
 class SnakeCard extends React.Component {
+
     constructor(props) {
         super(props);
+        const { windowSize = 200 }  = props;
         this.state = {
-            val: 'Press up / down / left / right to move'
+            val: 'Press up / down / left / right to move' ,
+            windowSize : windowSize
         };
     }
     //const { theme, label } = props;
@@ -57,12 +61,16 @@ class SnakeCard extends React.Component {
             </Row>
             <Row className="justify-content-md-center">
                 <Col md="auto">
-                    <h1>Here will be the snake game block</h1>
+                    {/* <h1>Here will be the snake game block</h1> */}
+                    <SnakeGrid/>
                 </Col>
             </Row>
             <Row className="justify-content-md-center">
                 <Col md="auto">
                     {this.state.val}
+                </Col>
+                <Col md="auto">
+                    {this.state.windowSize}
                 </Col>
             </Row>
         </Container>
