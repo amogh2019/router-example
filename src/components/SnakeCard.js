@@ -14,8 +14,8 @@ class SnakeCard extends React.Component {
             val: 'Press up / down / left / right to move',
             windowSize: windowSize,
             squareSize: 10,
-            positions: [[100, 200]],
-            directions: [1]
+            positions: [[100, 200], [110, 200], [120, 200]],
+            directions: [1, 1, 1]
         };
     }
     //const { theme, label } = props;
@@ -27,8 +27,51 @@ class SnakeCard extends React.Component {
 
     relocate = () => {
         console.log("here");
+        // when updating single point based on its direction
+        // this.state.positions.forEach((pos, id) => {
+        //     this.updatePoint(this.state.directions[id], id);
+        // });
+
+        // for updating all points
+        // move points
+        const oldpos = [...this.state.positions];
+        const step = this.state.squareSize;
+        const limit = this.state.windowSize;
         this.state.positions.forEach((pos, id) => {
-            this.updateHead(this.state.directions[id]);
+            console.log(pos + ' ' + id);
+            switch (this.state.directions[id]) {
+                case 1:
+                    oldpos[id][0] = mod(oldpos[id][0] + step, limit);
+                    break;
+                case 2:
+                    oldpos[id][1] = mod(oldpos[id][1] + step, limit);
+                    break;
+                case 3:
+                    oldpos[id][0] = mod(oldpos[id][0] - step, limit);
+                    break;
+                case 4:
+                    oldpos[id][1] = mod(oldpos[id][1] - step, limit);
+                    break;
+                default:
+                    break;
+            }
+        });
+        // shift direction to right by one step // keeping the first element as it is 
+        // assumes this is a blocking thread and while this operation executes, all update head queries wait
+
+        let last = this.state.directions[0];
+        const newDirections = [last];
+        this.state.directions.forEach((dir, id) => {
+            if (id > 0) {
+                newDirections.push(last);
+                last = dir;
+            }
+        });
+
+        this.setState({
+            ...this.state,
+            positions: [...oldpos],
+            directions: [...newDirections]
         });
     }
 
@@ -38,23 +81,23 @@ class SnakeCard extends React.Component {
         });
     }
 
-    updateHead = (dir) => {
+    updatePoint = (dir, id) => {
         const oldpos = [...this.state.positions];
         const step = this.state.squareSize;
         const limit = this.state.windowSize;
 
         switch (dir) {
             case 1:
-                oldpos[0][0] = mod(oldpos[0][0] + step, limit);
+                oldpos[id][0] = mod(oldpos[id][0] + step, limit);
                 break;
             case 2:
-                oldpos[0][1] = mod(oldpos[0][1] + step, limit);
+                oldpos[id][1] = mod(oldpos[id][1] + step, limit);
                 break;
             case 3:
-                oldpos[0][0] = mod(oldpos[0][0] - step, limit);
+                oldpos[id][0] = mod(oldpos[id][0] - step, limit);
                 break;
             case 4:
-                oldpos[0][1] = mod(oldpos[0][1] - step, limit);
+                oldpos[id][1] = mod(oldpos[id][1] - step, limit);
                 break;
             default:
                 break;
