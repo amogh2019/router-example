@@ -12,12 +12,16 @@ const initialState = {
     directions: [1, 1, 1, 1, 1, 1, 1]
 };
 
+const getInitialState = () => {
+    return JSON.parse(JSON.stringify(initialState));
+}
+
 class SnakeCard extends React.Component {
 
     constructor(props) {
         super(props);
         const { windowSize = 400 } = props;
-        this.state = { ...initialState, windowSize };
+        this.state = { ...getInitialState(), windowSize };
     }
 
     componentDidMount() {
@@ -75,20 +79,12 @@ class SnakeCard extends React.Component {
                     ...acc,
                     [iposArr]: (acc[iposArr] || 0) + 1
                 }), {});
-
-        console.log(Object.values(positionsCountMap));
         const duplicateFound = Object.values(positionsCountMap).some(posCount => posCount > 1);
 
         if (duplicateFound) {
             this.setState({
-                positions : [],
-                directions : []
+                ...getInitialState()
             });
-            this.setState({
-                ...initialState,
-                positions : [[100, 200], [90, 200], [80, 200], [70, 200], [60, 200], [50, 200]]
-            });
-            console.log(this.state);
         } else {
             this.setState({
                 ...this.state,
@@ -167,7 +163,6 @@ class SnakeCard extends React.Component {
         switch (event.key) {
             case 'ArrowUp':
                 this.setVal('up');
-
                 this.updateHeadDirection(dirToIndex[event.key]);
                 break;
             case 'ArrowDown':
