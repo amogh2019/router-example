@@ -19,6 +19,12 @@ Mobile compatiblity to be taken up.
 
 {to be written}
 
+## How to Develop and Run 
+
+ - Clone repo
+ - npm install
+ - npm run start   (the app runs locally)
+ - npm run deploy  (deploy app on gh-pages)(builds locally, pushes the build folder to gh-pages branch)(auto deploy from there)
 
 ## Author
 
