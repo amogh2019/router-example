@@ -9,10 +9,10 @@ by - [Tania Rascia](https://www.taniarascia.com)
 
 ## Demo
 
-The App can we run as github static page.
-Build folder is present in gh-pages branch.
-[https://amogh2019.github.io/router-example/]
-Current app is intended to be run over desktop browser.
+- The App can we run as github static page.
+- Build folder is present in gh-pages branch.
+- [https://amogh2019.github.io/router-example/]
+- Current app is intended to be run over desktop browser.
 Mobile compatiblity to be taken up.
 
 ## Algorithm
