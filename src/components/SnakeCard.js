@@ -2,7 +2,7 @@
 import React from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
 import SnakeGrid from './SnakeGrid';
-import { mod } from '../utils/helper';
+import { mod, getRandomPos, getOppositeDirectionValue } from '../utils/helper';
 
 const initialState = {
     val: 'Press up / down / left / right to move',
@@ -11,7 +11,7 @@ const initialState = {
     positions: [[100, 200], [90, 200], [80, 200], [70, 200], [60, 200], [50, 200]],
     directions: [1, 1, 1, 1, 1, 1, 1],
     maxLength: 6,
-    foodPosition: [135, 135]
+    foodPosition: getRandomPos(10, 400)
 };
 
 const getInitialState = () => {
@@ -28,7 +28,7 @@ class SnakeCard extends React.Component {
 
     componentDidMount() {
         document.addEventListener('keydown', this.handleKeyPress);
-        setInterval(() => this.relocate(), 300);
+        setInterval(() => this.relocate(), 100);
     }
 
     relocate = () => {
@@ -41,6 +41,8 @@ class SnakeCard extends React.Component {
         // for updating all points
         // move points
         const oldpos = [...this.state.positions];
+        const oldLastPositionX = this.state.positions[this.state.positions.length - 1][0];
+        const oldLastPositionY = this.state.positions[this.state.positions.length - 1][1];
         const step = this.state.squareSize;
         const limit = this.state.windowSize;
         this.state.positions.forEach((pos, id) => {
@@ -66,6 +68,7 @@ class SnakeCard extends React.Component {
         // shift direction to right by one step // keeping the first element as it is 
         // assumes this is a blocking thread and while this operation executes, all update head queries wait
         let last = this.state.directions[0];
+        const oldLastPositionDirection = this.state.directions[this.state.directions.length - 1];
         const newDirections = [last];
         this.state.directions.forEach((dir, id) => {
             if (id > 0) {
@@ -74,9 +77,24 @@ class SnakeCard extends React.Component {
             }
         });
 
-        // if repeats found in position // snake ate itself
+        // if food found on head // relocate food // increase length at end // update max length
+        const headPos = oldpos[0];
+        let currentFoodPosition = this.state.foodPosition;
+        let oldMaxLength = this.state.maxLength;
+        
+        if(headPos.toString() === currentFoodPosition.toString()){
+            // update new food position
+            currentFoodPosition = getRandomPos(this.state.squareSize, this.state.windowSize);
+            // add new pos
+            oldpos.push([oldLastPositionX, oldLastPositionY]);
+            // add new direction
+            newDirections.push(oldLastPositionDirection);
+        }
+
+
+        // if repeats found in current position // snake tried ate itself
         const positionsCountMap =
-            this.state.positions
+            oldpos
                 .reduce((acc, iposArr) => ({
                     ...acc,
                     [iposArr]: (acc[iposArr] || 0) + 1
@@ -85,13 +103,16 @@ class SnakeCard extends React.Component {
 
         if (duplicateFound) {
             this.setState({
-                ...getInitialState()
+                ...getInitialState(),
+                maxLength: oldMaxLength
             });
         } else {
             this.setState({
                 ...this.state,
                 positions: [...oldpos],
-                directions: [...newDirections]
+                directions: [...newDirections],
+                foodPosition: currentFoodPosition,
+                maxLength: oldpos.length > oldMaxLength ? oldpos.length : oldMaxLength
             });
         }
     }
@@ -152,10 +173,7 @@ class SnakeCard extends React.Component {
 
         // snake cant move back
         const currentHeadDirection = this.state.directions[0];
-        let oppositeDirectionIndex = (currentHeadDirection + 2) % 4;
-        if (oppositeDirectionIndex === 0) {
-            oppositeDirectionIndex = 4;
-        }
+        let oppositeDirectionIndex = getOppositeDirectionValue(currentHeadDirection);
 
         if (dirToIndex[event.key] === oppositeDirectionIndex) {
             return;
@@ -203,6 +221,7 @@ class SnakeCard extends React.Component {
                         height={this.state.windowSize}
                         squareSize={this.state.squareSize}
                         positions={this.state.positions}
+                        foodPosition={this.state.foodPosition}
                     />
                 </Col>
             </Row>
