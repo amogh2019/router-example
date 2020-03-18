@@ -7,8 +7,11 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
+  "homepage" : "http://amogh2019.github.io/router-example",
   "eslintConfig": {
     "extends": "react-app"
   },
@@ -27,8 +30,10 @@
   "license": "MIT",
   "dependencies": {
     "axios": "^0.19.0",
+    "bootstrap": "^4.4.1",
     "gh-pages": "^2.1.1",
     "react": "^16.9.0",
+    "react-bootstrap": "^1.0.0-beta.17",
     "react-dom": "^16.9.0",
     "react-router-dom": "^5.0.1",
     "react-scripts": "^3.1.1"

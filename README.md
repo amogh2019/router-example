@@ -1,20 +1,20 @@
-# React Router Example
+# React Router Example : Simple Snake Game
 
+Wanted to make a snake game using a simple react router
+
+Forked 
 How to make a Single Page Application with React Router.
-
+by - [Tania Rascia](https://www.taniarascia.com)
 ### [View Tutorial](https://www.taniarascia.com/using-react-router-spa)
 
-## Purpose
+## Algorithm
 
-Set up a router in React.
+{to be written}
 
-- `/` - root
-- `/:page_id` - page
-- `/categories/:category_id` - category
 
 ## Author
 
-- [Tania Rascia](https://www.taniarascia.com)
+[Amogh Sharma](https://github.com/amogh2019)
 
 ## License
 
