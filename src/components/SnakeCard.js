@@ -191,7 +191,7 @@ class SnakeCard extends React.Component {
             <Row className="justify-content-md-center">
                 <Col md="auto">
                     <p>
-                        This is just another snake game, move snake, eat to grow, dont eat yourself!
+                        This is just another snake game, move snake, eat to grow, dont bite yourself!
                 </p>
                 </Col>
             </Row>
