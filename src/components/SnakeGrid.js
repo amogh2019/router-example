@@ -10,7 +10,7 @@ const SnakeGrid = (props) => {
 
     const elementStyle = (x, y) => {
         const ans = {
-            position: 'relative',
+            position: 'absolute',
             left: x,
             top: y,
             width: squareSize,

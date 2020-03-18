@@ -14,7 +14,7 @@ class SnakeCard extends React.Component {
             val: 'Press up / down / left / right to move',
             windowSize: windowSize,
             squareSize: 10,
-            positions: [[100, 200], [110, 200], [120, 200]],
+            positions: [[100, 200], [90, 200], [80, 200]],
             directions: [1, 1, 1]
         };
     }
@@ -157,7 +157,7 @@ class SnakeCard extends React.Component {
                 </Col>
             </Row>
             <Row className="justify-content-md-center">
-                <Col md="auto">
+                <Col md="auto pl-0">
                     {/* <h1>Here will be the snake game block</h1> */}
                     <SnakeGrid
                         height={this.state.windowSize}
