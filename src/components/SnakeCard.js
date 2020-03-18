@@ -10,7 +10,8 @@ const initialState = {
     squareSize: 10,
     positions: [[100, 200], [90, 200], [80, 200], [70, 200], [60, 200], [50, 200]],
     directions: [1, 1, 1, 1, 1, 1, 1],
-    maxLength : 6
+    maxLength: 6,
+    foodPosition: [135, 135]
 };
 
 const getInitialState = () => {
@@ -142,9 +143,9 @@ class SnakeCard extends React.Component {
     handleKeyPress = (event) => {
         event.preventDefault();
 
-        const dirToIndex = { 
+        const dirToIndex = {
             'ArrowUp': 4,
-            'ArrowDown' : 2,
+            'ArrowDown': 2,
             'ArrowLeft': 3,
             'ArrowRight': 1
         };
@@ -152,11 +153,11 @@ class SnakeCard extends React.Component {
         // snake cant move back
         const currentHeadDirection = this.state.directions[0];
         let oppositeDirectionIndex = (currentHeadDirection + 2) % 4;
-        if(oppositeDirectionIndex === 0){
+        if (oppositeDirectionIndex === 0) {
             oppositeDirectionIndex = 4;
         }
-        
-        if(dirToIndex[event.key] === oppositeDirectionIndex){
+
+        if (dirToIndex[event.key] === oppositeDirectionIndex) {
             return;
         }
 

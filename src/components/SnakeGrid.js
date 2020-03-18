@@ -1,7 +1,7 @@
 import React from 'react';
 
 const SnakeGrid = (props) => {
-    const { height = 400, positions = [[100, 200]], squareSize = 10 } = props;
+    const { height = 400, positions = [[100, 200]], squareSize = 10, foodPosition = [130, 130] } = props;
 
     const fieldStyle = {
         width: height,
@@ -19,6 +19,14 @@ const SnakeGrid = (props) => {
         return ans;
     }
 
+    let food = null;
+    if (foodPosition != null) {
+        food = <div
+            style={elementStyle(foodPosition[0], foodPosition[1])}
+            className="bg-danger"
+        />
+    }
+
     return <div
         style={fieldStyle}
         className="bg-secondary"
@@ -32,7 +40,7 @@ const SnakeGrid = (props) => {
                 />
             })
         }
-
+        {food}
     </div>
 }
 
