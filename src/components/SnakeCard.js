@@ -9,7 +9,8 @@ const initialState = {
     windowSize: 400,
     squareSize: 10,
     positions: [[100, 200], [90, 200], [80, 200], [70, 200], [60, 200], [50, 200]],
-    directions: [1, 1, 1, 1, 1, 1, 1]
+    directions: [1, 1, 1, 1, 1, 1, 1],
+    maxLength : 6
 };
 
 const getInitialState = () => {
@@ -210,6 +211,14 @@ class SnakeCard extends React.Component {
                 </Col>
                 <Col md="auto">
                     {this.state.windowSize}
+                </Col>
+            </Row>
+            <Row className="mt-5 justify-content-md-center">
+                <Col md="auto">
+                    Current Length : {this.state.positions.length}
+                </Col>
+                <Col md="auto">
+                    Max Length : {this.state.maxLength}
                 </Col>
             </Row>
         </Container>

@@ -39,7 +39,7 @@ export default function App() {
                             <SnakeCard theme="danger" label="Delete Item" />
                         </Tab>
                         <Tab eventKey="stats" title="Stats">
-                            <ErrorDiv message="Will show game stats once redux integrated." />
+                            <ErrorDiv message="Work is under progress to show your gameplay statistics." />
                         </Tab>
                         <Tab eventKey="other" title="Other Info" disabled>
                             <ErrorDiv message="Section not available yet!" />
