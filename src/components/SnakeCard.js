@@ -4,21 +4,21 @@ import { Container, Row, Col } from 'react-bootstrap';
 import SnakeGrid from './SnakeGrid';
 import { mod } from '../utils/helper';
 
+const initialState = {
+    val: 'Press up / down / left / right to move',
+    windowSize: 400,
+    squareSize: 10,
+    positions: [[100, 200], [90, 200], [80, 200], [70, 200], [60, 200], [50, 200]],
+    directions: [1, 1, 1, 1, 1, 1, 1]
+};
 
 class SnakeCard extends React.Component {
 
     constructor(props) {
         super(props);
         const { windowSize = 400 } = props;
-        this.state = {
-            val: 'Press up / down / left / right to move',
-            windowSize: windowSize,
-            squareSize: 10,
-            positions: [[100, 200], [90, 200], [80, 200]],
-            directions: [1, 1, 1]
-        };
+        this.state = { ...initialState, windowSize };
     }
-    //const { theme, label } = props;
 
     componentDidMount() {
         document.addEventListener('keydown', this.handleKeyPress);
@@ -26,7 +26,7 @@ class SnakeCard extends React.Component {
     }
 
     relocate = () => {
-        console.log("here");
+
         // when updating single point based on its direction
         // this.state.positions.forEach((pos, id) => {
         //     this.updatePoint(this.state.directions[id], id);
@@ -38,7 +38,7 @@ class SnakeCard extends React.Component {
         const step = this.state.squareSize;
         const limit = this.state.windowSize;
         this.state.positions.forEach((pos, id) => {
-            console.log(pos + ' ' + id);
+            //console.log(pos + ' ' + id);
             switch (this.state.directions[id]) {
                 case 1:
                     oldpos[id][0] = mod(oldpos[id][0] + step, limit);
@@ -56,9 +56,9 @@ class SnakeCard extends React.Component {
                     break;
             }
         });
+
         // shift direction to right by one step // keeping the first element as it is 
         // assumes this is a blocking thread and while this operation executes, all update head queries wait
-
         let last = this.state.directions[0];
         const newDirections = [last];
         this.state.directions.forEach((dir, id) => {
@@ -68,11 +68,34 @@ class SnakeCard extends React.Component {
             }
         });
 
-        this.setState({
-            ...this.state,
-            positions: [...oldpos],
-            directions: [...newDirections]
-        });
+        // if repeats found in position // snake ate itself
+        const positionsCountMap =
+            this.state.positions
+                .reduce((acc, iposArr) => ({
+                    ...acc,
+                    [iposArr]: (acc[iposArr] || 0) + 1
+                }), {});
+
+        console.log(Object.values(positionsCountMap));
+        const duplicateFound = Object.values(positionsCountMap).some(posCount => posCount > 1);
+
+        if (duplicateFound) {
+            this.setState({
+                positions : [],
+                directions : []
+            });
+            this.setState({
+                ...initialState,
+                positions : [[100, 200], [90, 200], [80, 200], [70, 200], [60, 200], [50, 200]]
+            });
+            console.log(this.state);
+        } else {
+            this.setState({
+                ...this.state,
+                positions: [...oldpos],
+                directions: [...newDirections]
+            });
+        }
     }
 
     setVal = (k) => {
@@ -121,23 +144,43 @@ class SnakeCard extends React.Component {
 
     handleKeyPress = (event) => {
         event.preventDefault();
-        console.log(event)
+
+        const dirToIndex = { 
+            'ArrowUp': 4,
+            'ArrowDown' : 2,
+            'ArrowLeft': 3,
+            'ArrowRight': 1
+        };
+
+        // snake cant move back
+        const currentHeadDirection = this.state.directions[0];
+        let oppositeDirectionIndex = (currentHeadDirection + 2) % 4;
+        if(oppositeDirectionIndex === 0){
+            oppositeDirectionIndex = 4;
+        }
+        
+        if(dirToIndex[event.key] === oppositeDirectionIndex){
+            return;
+        }
+
+        // update head direction
         switch (event.key) {
             case 'ArrowUp':
                 this.setVal('up');
-                this.updateHeadDirection(4);
+
+                this.updateHeadDirection(dirToIndex[event.key]);
                 break;
             case 'ArrowDown':
                 this.setVal('down');
-                this.updateHeadDirection(2);
+                this.updateHeadDirection(dirToIndex[event.key]);
                 break;
             case 'ArrowLeft':
                 this.setVal('left');
-                this.updateHeadDirection(3);
+                this.updateHeadDirection(dirToIndex[event.key]);
                 break;
             case 'ArrowRight':
                 this.setVal('right');
-                this.updateHeadDirection(1);
+                this.updateHeadDirection(dirToIndex[event.key]);
                 break;
             default:
                 this.setVal('Press up / down / left / right to move');
