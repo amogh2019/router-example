@@ -215,14 +215,14 @@ class SnakeCard extends React.Component {
     render() {
         return (<Container className="mt-5">
             <Row className="justify-content-md-center">
-                <Col md="auto">
+                <Col xs="auto">
                     <p>
                         This is just another snake game, move snake, eat to grow, dont bite yourself!
                 </p>
                 </Col>
             </Row>
             <Row className="justify-content-md-center">
-                <Col md="auto pl-0">
+                <Col xs="auto pl-0">
                     {/* <h1>Here will be the snake game block</h1> */}
                     <SnakeGrid
                         height={this.state.windowSize}
@@ -233,38 +233,38 @@ class SnakeCard extends React.Component {
                 </Col>
             </Row>
             <Row className="justify-content-md-center">
-                <Col md="auto">
+                <Col xs="auto">
                     {this.state.val}
                 </Col>
-                <Col md="auto">
+                <Col xs="auto">
                     {this.state.windowSize}
                 </Col>
             </Row>
             <Row className="mt-5 justify-content-md-center">
-                <Col md="auto">
+                <Col xs="auto">
                     Current Length : {this.state.positions.length}
                 </Col>
-                <Col md="auto">
+                <Col xs="auto">
                     Max Length : {this.state.maxLength}
                 </Col>
             </Row>
             <Row className="mt-5 justify-content-md-center">
-                <Col md="auto" onClick={() => this.changeDirectionOnClick('ArrowLeft')} >
+                <Col xs="auto" onClick={() => this.changeDirectionOnClick('ArrowLeft')} >
                     <svg class="bi bi-chevron-left" width="32" height="32" viewBox="0 0 20 20" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                         <path fill-rule="evenodd" d="M13.354 3.646a.5.5 0 010 .708L7.707 10l5.647 5.646a.5.5 0 01-.708.708l-6-6a.5.5 0 010-.708l6-6a.5.5 0 01.708 0z" clip-rule="evenodd" />
                     </svg>
                 </Col>
-                <Col md="auto" onClick={() => this.changeDirectionOnClick('ArrowRight')} >
+                <Col xs="auto" onClick={() => this.changeDirectionOnClick('ArrowRight')} >
                     <svg class="bi bi-chevron-left" width="32" height="32" viewBox="0 0 20 20" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                         <path fill-rule="evenodd" d="M6.646 3.646a.5.5 0 01.708 0l6 6a.5.5 0 010 .708l-6 6a.5.5 0 01-.708-.708L12.293 10 6.646 4.354a.5.5 0 010-.708z" clip-rule="evenodd" />
                     </svg>
                 </Col>
-                <Col md="auto" onClick={() => this.changeDirectionOnClick('ArrowUp')} >
+                <Col xs="auto" onClick={() => this.changeDirectionOnClick('ArrowUp')} >
                     <svg class="bi bi-chevron-up" width="32" height="32" viewBox="0 0 20 20" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                         <path fill-rule="evenodd" d="M9.646 6.646a.5.5 0 01.708 0l6 6a.5.5 0 01-.708.708L10 7.707l-5.646 5.647a.5.5 0 01-.708-.708l6-6z" clip-rule="evenodd" />
                     </svg>
                 </Col>
-                <Col md="auto" onClick={() => this.changeDirectionOnClick('ArrowDown')} >
+                <Col xs="auto" onClick={() => this.changeDirectionOnClick('ArrowDown')} >
                     <svg class="bi bi-chevron-down" width="32" height="32" viewBox="0 0 20 20" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                         <path fill-rule="evenodd" d="M3.646 6.646a.5.5 0 01.708 0L10 12.293l5.646-5.647a.5.5 0 01.708.708l-6 6a.5.5 0 01-.708 0l-6-6a.5.5 0 010-.708z" clip-rule="evenodd" />
                     </svg>

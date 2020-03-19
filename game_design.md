@@ -1,4 +1,4 @@
-# the snake game system design
+# the snake game system design v1
 
 
 
@@ -11,11 +11,11 @@
 
 ## Design process
 
-When presented to design the system 
 
-### Getting Requriements 
 
-team info, fixtures & results, livescores, team stats... 
+###  The Expectations from the Game / Requriements 
+
+The game should be able to 
 
 ### Getting Actors
 
