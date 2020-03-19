@@ -9,11 +9,11 @@ by - [Tania Rascia](https://www.taniarascia.com)
 
 ## Demo
 
-- The App can we run as github static page.
+- The App can be run as github static page.
 - Build folder is present in gh-pages branch.
 - [PLAY THE GAME!](https://amogh2019.github.io/router-example/)
 - Current app is intended to be run over desktop browser.
-Mobile compatiblity to be taken up.
+Mobile compatiblity to be taken up later.
 
 ## Design
 
