@@ -36,7 +36,7 @@ Just one actor : The SnakeCharmer
    - Food for snake
 
 - Snake Card :
-   - Wrapper to Move and Update Snake and its Food based on user input
+   - Wrapper to Move and Update Snake and its Food based on SnakeCharmer's whims
 
 - Directions
    - ```javascript
