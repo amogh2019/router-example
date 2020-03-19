@@ -11,13 +11,13 @@ by - [Tania Rascia](https://www.taniarascia.com)
 
 - The App can we run as github static page.
 - Build folder is present in gh-pages branch.
-- [https://amogh2019.github.io/router-example/]
+- [PLAY THE GAME!](https://amogh2019.github.io/router-example/)
 - Current app is intended to be run over desktop browser.
 Mobile compatiblity to be taken up.
 
-## Algorithm
+## Design
 
-{to be written}
+[Design Markdown](https://github.com/amogh2019/router-example/blob/master/game_design.md)
 
 ## How to Develop and Run 
 
