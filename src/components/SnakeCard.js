@@ -212,6 +212,9 @@ class SnakeCard extends React.Component {
         this.handleKeyPress(event);
     }
 
+    disableScrollForSwipeInGridMobileView = (pos, event) => {
+        return true;
+    }
 
     render() {
         return (<Container className="mt-5">
@@ -230,6 +233,8 @@ class SnakeCard extends React.Component {
                         onSwipeRight={() => this.changeDirectionOnClick('ArrowRight')}
                         onSwipeUp={() => this.changeDirectionOnClick('ArrowUp')}
                         onSwipeDown={() => this.changeDirectionOnClick('ArrowDown')}
+                        onSwipeMove={(pos, event) => this.disableScrollForSwipeInGridMobileView(pos, event)}
+                        allowMouseEvents={true}
                     >
                         <SnakeGrid
                             height={this.state.windowSize}
