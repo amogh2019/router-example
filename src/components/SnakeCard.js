@@ -3,6 +3,7 @@ import React from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
 import SnakeGrid from './SnakeGrid';
 import { mod, getRandomPos, getOppositeDirectionValue } from '../utils/helper';
+import Swipe from 'react-easy-swipe';
 
 const initialState = {
     val: 'Press up / down / left / right to move',
@@ -206,7 +207,7 @@ class SnakeCard extends React.Component {
     changeDirectionOnClick = (direction) => {
         const event = {
             key: direction,
-            preventDefault: () => {}
+            preventDefault: () => { }
         }
         this.handleKeyPress(event);
     }
@@ -224,12 +225,19 @@ class SnakeCard extends React.Component {
             <Row className="justify-content-md-center">
                 <Col xs="auto pl-0">
                     {/* <h1>Here will be the snake game block</h1> */}
-                    <SnakeGrid
-                        height={this.state.windowSize}
-                        squareSize={this.state.squareSize}
-                        positions={this.state.positions}
-                        foodPosition={this.state.foodPosition}
-                    />
+                    <Swipe 
+                        onSwipeLeft={() => this.changeDirectionOnClick('ArrowLeft')}
+                        onSwipeRight={() => this.changeDirectionOnClick('ArrowRight')}
+                        onSwipeUp={() => this.changeDirectionOnClick('ArrowUp')}
+                        onSwipeDown={() => this.changeDirectionOnClick('ArrowDown')}
+                    >
+                        <SnakeGrid
+                            height={this.state.windowSize}
+                            squareSize={this.state.squareSize}
+                            positions={this.state.positions}
+                            foodPosition={this.state.foodPosition}
+                        />
+                    </Swipe>
                 </Col>
             </Row>
             <Row className="justify-content-md-center">

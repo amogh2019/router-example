@@ -11,7 +11,7 @@
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build"
   },
-  "homepage" : "http://amogh2019.github.io/router-example",
+  "homepage": "http://amogh2019.github.io/router-example",
   "eslintConfig": {
     "extends": "react-app"
   },
@@ -35,6 +35,7 @@
     "react": "^16.9.0",
     "react-bootstrap": "^1.0.0-beta.17",
     "react-dom": "^16.9.0",
+    "react-easy-swipe": "0.0.18",
     "react-router-dom": "^5.0.1",
     "react-scripts": "^3.1.1"
   }
