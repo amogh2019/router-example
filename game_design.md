@@ -63,7 +63,7 @@ Just one actor : The SnakeCharmer
           positions: [[100, 200], [90, 200], [80, 200], [70, 200],  [60, 200], [50, 200]],
           
           maxLength: 6,
-      ```
+         ```
    - Initialize and Update Food position for the Snake in Snake Grid
       - ```javascript
           foodPosition: getRandomPos(10, 400) 
