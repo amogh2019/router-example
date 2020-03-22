@@ -64,7 +64,6 @@ Just one actor : The SnakeCharmer
           
           maxLength: 6,
       ```
-
    - Initialize and Update Food position for the Snake in Snake Grid
       - ```javascript
           foodPosition: getRandomPos(10, 400) 
@@ -86,7 +85,7 @@ Just one actor : The SnakeCharmer
                - snake continues to go in the same direction if the SnakeCharmer is not charming enough.
             -  if food found on head // relocate food // increase length at end // update max length
             -  if repeats found in current position // snake tried ate itself // reset to intial state, keep max length achieved
-            -  
+            
 
 
         
