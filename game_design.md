@@ -74,6 +74,7 @@ Just one actor : The SnakeCharmer
          -  map keys as per directionsToIndex.
          - this sets the head
       - Clickable Buttons
+      - Swipes in the SnakeGrid
    - Maintain Directions for each element of the Snake.
       - directions: [1, 1, 1, 1, 1, 1, 1]
    - Scheduled Action to update Snake positions based on direction
