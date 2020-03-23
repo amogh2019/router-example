@@ -17,7 +17,7 @@ export default function UserPage(props) {
         .catch((error) => {
           return { 
             data : {
-              errormsg : 'jinhe Chcha ko aap khoj rahe the, nahi mile! :/ mumbai mein baaad ayi thi, bas, beh gye',
+              errormsg : 'jinh Chcha ko aap khoj rahe the, nahi mile!  :/    mumbai mein baaad ayi thi, bas, beh gye',
               loading: false
               }
             }
