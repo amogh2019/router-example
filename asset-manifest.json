@@ -1,14 +1,14 @@
 {
   "files": {
-    "main.js": "/router-example/static/js/main.a4a8b3ca.chunk.js",
-    "main.js.map": "/router-example/static/js/main.a4a8b3ca.chunk.js.map",
+    "main.js": "/router-example/static/js/main.ca024471.chunk.js",
+    "main.js.map": "/router-example/static/js/main.ca024471.chunk.js.map",
     "runtime~main.js": "/router-example/static/js/runtime~main.c715f87b.js",
     "runtime~main.js.map": "/router-example/static/js/runtime~main.c715f87b.js.map",
     "static/css/2.86aa6515.chunk.css": "/router-example/static/css/2.86aa6515.chunk.css",
-    "static/js/2.1661d06e.chunk.js": "/router-example/static/js/2.1661d06e.chunk.js",
-    "static/js/2.1661d06e.chunk.js.map": "/router-example/static/js/2.1661d06e.chunk.js.map",
+    "static/js/2.3cda9298.chunk.js": "/router-example/static/js/2.3cda9298.chunk.js",
+    "static/js/2.3cda9298.chunk.js.map": "/router-example/static/js/2.3cda9298.chunk.js.map",
     "index.html": "/router-example/index.html",
-    "precache-manifest.e6bdfbd999bb7cbfab3010ec3899d147.js": "/router-example/precache-manifest.e6bdfbd999bb7cbfab3010ec3899d147.js",
+    "precache-manifest.648941e2adf6b254efa38d1e239f6cbb.js": "/router-example/precache-manifest.648941e2adf6b254efa38d1e239f6cbb.js",
     "service-worker.js": "/router-example/service-worker.js",
     "static/css/2.86aa6515.chunk.css.map": "/router-example/static/css/2.86aa6515.chunk.css.map"
   }
