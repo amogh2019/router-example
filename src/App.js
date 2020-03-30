@@ -9,9 +9,9 @@ export default function App() {
   return (
     <HashRouter>
       <Redirect exact from="/" to="snake" />
-      <Route path="/snake" component={SnakeHome} />
+      <Route exact path="/snake" component={SnakeHome} />
       <Route exact path="/home" component={HomePage} />
-      <Route path="/:id" component={UserPage} />
+      <Route exact path="/user/:id" component={UserPage} />
     </HashRouter>
   )
 }
