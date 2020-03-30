@@ -6,7 +6,7 @@ export default function HomePage() {
     <div className="container">
       <h1>Home Page</h1>
       <p>
-        <Link to="/taniarascia">taniarascia</Link> on GitHub.
+        <Link to="/user/taniarascia">taniarascia</Link> on GitHub.
       </p>
     </div>
   )
